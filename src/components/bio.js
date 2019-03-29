@@ -16,7 +16,8 @@ function Bio() {
     <StaticQuery
       query={bioQuery}
       render={data => {
-        const { author, social } = data.site.siteMetadata
+        console.log('data:', data);
+        const { author } = data.site.siteMetadata
         return (
           <div
             style={{
@@ -26,7 +27,7 @@ function Bio() {
           >
             <Image
               fixed={data.avatar.childImageSharp.fixed}
-              alt={author}
+              alt={''}
               style={{
                 marginRight: rhythm(1 / 2),
                 marginBottom: 0,
@@ -38,12 +39,8 @@ function Bio() {
               }}
             />
             <p>
-              Written by <strong>{author}</strong> who lives and works in San
-              Francisco building useful things.
+              mildly ordered letters.
               {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
-              </a>
             </p>
           </div>
         )
@@ -54,7 +51,7 @@ function Bio() {
 
 const bioQuery = graphql`
   query BioQuery {
-    avatar: file(absolutePath: { regex: "/profile-pic.jpg/" }) {
+    avatar: file(absolutePath: { regex: "/profile-pic3.jpg/" }) {
       childImageSharp {
         fixed(width: 50, height: 50) {
           ...GatsbyImageSharpFixed
